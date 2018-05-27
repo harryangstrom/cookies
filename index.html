@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>cookie Test</title>
+        <script src="js/cookies.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+        crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="css/app.css">
+    </head>
+    <!--___________________________________Begin APP-->
+    <body>
+        <div id="resultDiv"></div>
+
+        <script>
+            $(document).ready(function() {
+                var visited = 0;
+                if(docCookies.hasItem("visited")) {
+                    visited = docCookies.getItem("visited");
+                }
+                visited++;
+                docCookies.setItem("visited", visited, Infinity);
+
+                $("#resultDiv").text("You have visited this site " + visited + " times.");
+            });
+        </script>
+
+    </body>
+    <!--_____________________________________End App-->
+</html>
