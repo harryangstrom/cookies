@@ -16,14 +16,34 @@
 
         <script>
             $(document).ready(function() {
-                var visited = 0;
-                if(docCookies.hasItem("visited")) {
-                    visited = docCookies.getItem("visited");
+                var $resultDiv = $("#resultDiv");
+                var newUser = true;
+                var daysSinceLastVisit;
+                
+                if(docCookies.hasItem("lastVisit")) {
+                    newUser = false;
+                    var lastVisit = docCookies.getItem("lastVisit");
+                    var now = new Date();
+                    var lastVisitDate = new Date(lastVisit);
+                    var timeDiff = Math.abs(now.getTime() - lastVisitDate.getTime());
+                    daysSinceLastVisit = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                    
                 }
-                visited++;
-                docCookies.setItem("visited", visited, Infinity);
+                
+                
+                docCookies.setItem("lastVisit", new Date(), Infinity);
 
-                $("#resultDiv").text("You have visited this site " + visited + " times.");
+                if(newUser) {
+                    $resultDiv.text("Welcome to the Site!");
+                }
+                else if(daysSinceLastVisit > 20) {
+                    $resultDiv.text("Welcome back to the Site!");
+                }
+                else {
+                    $resultDiv.text("Welcome good user!");
+                }
+
+                
             });
         </script>
 
