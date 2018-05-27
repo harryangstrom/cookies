@@ -42,6 +42,15 @@
                 else {
                     $resultDiv.text("Welcome good user!");
                 }
+                if (sessionStorage && sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+                    console.log("creando nueva clave");
+                        sessionStorage.setItem("clave2", true);
+                        localStorage.setItem("clave3", false);
+                        localStorage.clave4 = "esto es como objeto";
+                        let names = ["Carlos", "Rolando", "Mama"];
+                        localStorage.setItem("names", JSON.stringify(names));
+                        //localStorage.names = "nada";
+                }
 
                 
             });
